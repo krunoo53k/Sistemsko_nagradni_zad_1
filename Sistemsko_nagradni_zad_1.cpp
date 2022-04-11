@@ -10,7 +10,11 @@ void listFiles(fs::directory_entry entry, int count);
 int levels[10000] = {};
 int main()
 {
-    std::string path = "E:";
+    //std::string path = "C:";
+    char path[64];
+    printf("Enter path:");
+    scanf_s("%63s", &path, 64);
+    puts("\n");
     for (int i = 0; i < 10000; i++)
         levels[i] = 0;
     for (const auto& entry : fs::directory_iterator(path))
@@ -30,7 +34,6 @@ int main()
 void listFiles(fs::directory_entry entry, int count)
 {
     count++;
-    printf_s("Level %d", count);
     for (const auto& entry1 : fs::directory_iterator(entry.path()))
         if (entry1.is_directory())
         {
